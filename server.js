@@ -3,6 +3,10 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages')
+const {
+    userJoin,
+    getCurrentUser
+} = require('./utils/users')
 
 const app = express();
 
@@ -20,6 +24,8 @@ io.on('connection', socket => {
         username,
         room
     }) => {
+
+
         // Welcome current user
         socket.emit('message', formatMessage(botName, 'Welcome to chat'))
 
